@@ -16,3 +16,6 @@ bazel-bin
 bazel-keras
 bazel-out
 bazel-testlogs
+
+#pychache
+*.egg-info
