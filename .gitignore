@@ -19,3 +19,4 @@ bazel-testlogs
 
 #pychache
 *.egg-info
+*.egg-info/*
