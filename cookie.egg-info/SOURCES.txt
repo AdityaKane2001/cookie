@@ -1,0 +1,14 @@
+README.md
+setup.py
+cookie/__init__.py
+cookie.egg-info/PKG-INFO
+cookie.egg-info/SOURCES.txt
+cookie.egg-info/dependency_links.txt
+cookie.egg-info/requires.txt
+cookie.egg-info/top_level.txt
+cookie/engine/__init__.py
+cookie/engine/autodiff.py
+cookie/engine/context.py
+cookie/engine/engine_test.py
+cookie/engine/operands.py
+cookie/engine/operators.py
