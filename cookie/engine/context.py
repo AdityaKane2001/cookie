@@ -16,7 +16,7 @@ class Context(object):
     default_name_ctr = 0
     global_contexts = []
 
-    def __init__(self, name:str = "", graphs: List = []):
+    def __init__(self, name:str = ""):
         if "/" in name:
             raise ValueError("`/` is not allowed for use in context name.")
         if name == "":
@@ -24,25 +24,29 @@ class Context(object):
             Context.default_name_ctr += 1
         self.name = "Context:" + name
         self.assets = dict()
-        Context.global_contexts.append(self.name)
+        self.assets["Variables"] = []
+        self.assets["Constants"] = []
+        self.assets["Placeholders"] = []
+        self.assets["Operations"] = []
+        Context.global_contexts.append(self)
 
-    def _register_graphs(self, graphs:List[cookie.engine.graphs.Graph]) -> bool:
-        for graph in graphs:
-            if graph.name in self.assets.keys():
-                return True
-            self.assets[graph.name] = (graph, [])
-            self.assets[graph.name][1] += graph.objects
-        
-        return True
-    
-    def _register_graph(self, graph: cookie.engine.graphs.Graph) -> bool:
+    def register_graph(self, graph: cookie.engine.graphs.Graph) -> bool:
         if graph.name in self.assets.keys():
-            return True
-        self.assets[graph.name] = (graph, [])
-        self.assets[graph.name][1] += graph.objects
+            return False
+        self.assets[graph.name] = graph
 
         return True
+
+    def add_variable(self, variable):
+        self.assets["Variables"] += variable
     
+    def add_constant(self, constant):
+        self.assets["Constants"] += constant
+
+    def add_placeholder(self, placeholder):
+        self.assets["Placeholders"] += placeholder 
+
+
     def __enter__(self) -> cookie.engine.context.Context:
         return self
     
