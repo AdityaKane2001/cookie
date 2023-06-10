@@ -16,7 +16,7 @@ class Operator(Node):
         self.graph = graph
         self.value = None
         self.inputs = []
-        self.gradient = None
+        self.grad = None
 
     def __repr__(self):
         return f"Operator: name:{self.name}"
@@ -29,7 +29,8 @@ class add(Operator):
         assert a.graph == b.graph
         super().__init__(a.graph)
         self.inputs = [a, b]
-        self.name = f"{name}_{add.count}" if name is None else name
+        self.name = f"{name}/{add.count}" if name == "add" else name
+        add.count += 1
 
     def forward(self, a, b):
         return a + b
@@ -45,7 +46,8 @@ class mul(Operator):
         assert a.graph == b.graph
         super().__init__(a.graph)
         self.inputs = [a, b]
-        self.name = f"{name}_{add.count}" if name is None else name
+        self.name = f"{name}/{mul.count}" if name == "mul" else name
+        mul.count += 1
 
     def forward(self, a, b):
         return a * b
@@ -61,7 +63,8 @@ class matmul(Operator):
         assert a.graph == b.graph
         super().__init__(a.graph)
         self.inputs = [a, b]
-        self.name = f"{name}_{add.count}" if name is None else name
+        self.name = f"{name}/{matmul.count}" if name == "matmul" else name
+        matmul.count += 1
 
     def forward(self, a, b):
         return a @ b

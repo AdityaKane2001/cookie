@@ -14,7 +14,10 @@ class Variable(Node):
         Variable.count += 1
         
     def __repr__(self):
-        return f"Variable {self.name}: {self.data}"
+        if self.grad is None:
+            return f"variable {self.name}: data={self.data}"
+        else:
+            return f"variable {self.name}: data={self.data}, grad={self.grad}"
     
 
 class Placeholder(Node):
@@ -30,7 +33,10 @@ class Placeholder(Node):
         Placeholder.count += 1
         
     def __repr__(self):
-        return f"Placeholder {self.name}: {self.data}"
+        if self.grad is None:
+            return f"Placeholder {self.name}: data={self.data}"
+        else:
+            return f"Placeholder {self.name}: data={self.data}, grad={self.grad}"
     
 class Constant(Node):
     count = 0
@@ -44,7 +50,10 @@ class Constant(Node):
         Constant.count += 1
         
     def __repr__(self):
-        return f"Constant: name:{self.name}, data:{self.data}"
+        if self.grad is None:
+            return f"Constant {self.name}: data={self.data}"
+        else:
+            return f"Constant {self.name}: data={self.data}, grad={self.grad}"
     
     @property
     def data(self):
