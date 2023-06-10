@@ -20,7 +20,6 @@ with Graph() as g:
     # print(output)
     # print(grads)
     print(len(topo_sorted_order))
-    
         
     graph_fig = make_graph(topo_sorted_order)
     graph_fig.render(filename="assets/example")

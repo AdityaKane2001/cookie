@@ -1,7 +1,7 @@
 # cookie
 _A see-through automatic differentiation library._
 
-![Image of a computational graph](assets/banner.png)
+![Image of a computational graph](assets/example.png)
 
 This library is my effort to understand reverse automatic differentiation, most famously used in TensorFlow. I have used nothing but numpy and written everything from scratch (see credits). The end goal of this exercise is to understand autodiff and write usable code with reasonable performance.
 
