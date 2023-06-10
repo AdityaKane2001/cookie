@@ -13,5 +13,5 @@ def make_graph(topo_sorted_order):
     for node in topo_sorted_order:
         if isinstance(node, Operator):
             for e in node.inputs:
-                f.edge(e.name, node.name, label=node.name)
+                f.edge(e.name, node.name, label=e.name)
     return f
