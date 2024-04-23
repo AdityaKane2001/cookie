@@ -4,6 +4,9 @@ from cookie.operators import add, mul, topological_sort
 from cookie.flow import forward, backward
 from cookie.plot_graph import make_graph
 
+
+print("hello from test_graph.py!")
+
 with Graph() as g:
     x = Variable(g, 0.9)
     y = Variable(g, 0.4)
